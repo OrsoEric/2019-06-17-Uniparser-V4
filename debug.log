@@ -1,0 +1,754 @@
+Start Debug!
+-->> "main" |
+	OrangeBot Projects
+	-->> "test_bench" |
+		-->> "init" |
+		<<-- "init" |
+		-->> "exe" | exe: >0x0<
+			Terminator detected | Number of partial matches: 0
+			FSM RESET
+			-->> "init_arg_decoder" |
+			<<-- "init_arg_decoder" |
+		<<-- "exe" |
+		-->> "add_cmd" | cmd: 004c3260 >P<
+			-->> "chk_cmd" | cmd: 004c3260
+			<<-- "chk_cmd" |
+			Command >P< with handler >00401360< has been added with index: 0
+			Total number of commands: 1
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c3262 >A%uB%uC%uD%u<
+			-->> "chk_cmd" | cmd: 004c3262
+			<<-- "chk_cmd" |
+			Command >A%uB%uC%uD%u< with handler >00401640< has been added with index: 1
+			Total number of commands: 2
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c3270 >F<
+			-->> "chk_cmd" | cmd: 004c3270
+			<<-- "chk_cmd" |
+			Command >F< with handler >00401360< has been added with index: 2
+			Total number of commands: 3
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c3272 >X%u<
+			-->> "chk_cmd" | cmd: 004c3272
+			<<-- "chk_cmd" |
+			Command >X%u< with handler >004014c0< has been added with index: 3
+			Total number of commands: 4
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c3276 >VEL%u<
+			-->> "chk_cmd" | cmd: 004c3276
+			<<-- "chk_cmd" |
+			Command >VEL%u< with handler >004014c0< has been added with index: 4
+			Total number of commands: 5
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c327c >SA%sB%sC%sD%s<
+			-->> "chk_cmd" | cmd: 004c327c
+			<<-- "chk_cmd" |
+			Command >SA%sB%sC%sD%s< with handler >004017e0< has been added with index: 5
+			Total number of commands: 6
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c328b >SSA%SB%SC%SD%S<
+			-->> "chk_cmd" | cmd: 004c328b
+			<<-- "chk_cmd" |
+			Command >SSA%SB%SC%SD%S< with handler >00401980< has been added with index: 6
+			Total number of commands: 7
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c329b >VELX%uREI<
+			-->> "chk_cmd" | cmd: 004c329b
+			<<-- "chk_cmd" |
+			Command >VELX%uREI< with handler >004014c0< has been added with index: 7
+			Total number of commands: 8
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c32a5 >XENOSCUM<
+			-->> "chk_cmd" | cmd: 004c32a5
+			<<-- "chk_cmd" |
+			Command >XENOSCUM< with handler >00401360< has been added with index: 8
+			Total number of commands: 9
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c32ae >UUA%UB%UC%UD%U<
+			-->> "chk_cmd" | cmd: 004c32ae
+			<<-- "chk_cmd" |
+			Command >UUA%UB%UC%UD%U< with handler >00401b10< has been added with index: 9
+			Total number of commands: 10
+		<<-- "add_cmd" |
+		-->> "add_cmd" | cmd: 004c32be >POS%dNEG%dSHAKA<
+			-->> "chk_cmd" | cmd: 004c32be
+			<<-- "chk_cmd" |
+			Command >POS%dNEG%dSHAKA< with handler >00401ca0< has been added with index: 10
+			Total number of commands: 11
+		<<-- "add_cmd" |
+		-->> "parser_executor" | in: 0
+			-->> "exe" | exe: >0x53< >S<
+				PARSER_IDLE
+				Match command 5, total partial matches: 1
+				Match command 6, total partial matches: 2
+			<<-- "exe" |
+			-->> "exe" | exe: >0x53< >S<
+				PARSER_ID - ID
+				Prune away partial match: 5 |  num_match: 1
+			<<-- "exe" |
+			-->> "exe" | exe: >0x41< >A<
+				PARSER_ID - ID
+				Only one partial match remains. Num_match: -6
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2d<
+				PARSER_ID - ARG | num_match -6
+				ARG begins | command: 6
+				-->> "add_arg" | command index: 6
+					argument of type >S< added | Num arguments: 0 | Arg index: 0
+					-->> "set_s16" | arg_index: 0 | data: 0
+					<<-- "set_s16" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >-<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x33< >3<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >3<
+					-->> "get_s16" | arg_index: 0
+					<<-- "get_s16" | Decoded S16: 0
+					-->> "set_s16" | arg_index: 0 | data: -3
+					<<-- "set_s16" |
+					Updated argument with value: -3 | index: 0
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x32< >2<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >2<
+					-->> "get_s16" | arg_index: 0
+					<<-- "get_s16" | Decoded S16: -3
+					-->> "set_s16" | arg_index: 0 | data: -32
+					<<-- "set_s16" |
+					Updated argument with value: -32 | index: 0
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x37< >7<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >7<
+					-->> "get_s16" | arg_index: 0
+					<<-- "get_s16" | Decoded S16: -32
+					-->> "set_s16" | arg_index: 0 | data: -327
+					<<-- "set_s16" |
+					Updated argument with value: -327 | index: 0
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x36< >6<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >6<
+					-->> "get_s16" | arg_index: 0
+					<<-- "get_s16" | Decoded S16: -327
+					-->> "set_s16" | arg_index: 0 | data: -3276
+					<<-- "set_s16" |
+					Updated argument with value: -3276 | index: 0
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x38< >8<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >8<
+					-->> "get_s16" | arg_index: 0
+					<<-- "get_s16" | Decoded S16: -3276
+					-->> "set_s16" | arg_index: 0 | data: -32768
+					<<-- "set_s16" |
+					Updated argument with value: -32768 | index: 0
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x42< >B<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 1 | arg index: 3
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2b<
+				PARSER_ID - ARG | num_match -6
+				ARG begins | command: 6
+				-->> "add_arg" | command index: 6
+					argument of type >S< added | Num arguments: 1 | Arg index: 3
+					-->> "set_s16" | arg_index: 3 | data: 0
+					<<-- "set_s16" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >+<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x33< >3<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >3<
+					-->> "get_s16" | arg_index: 3
+					<<-- "get_s16" | Decoded S16: 0
+					-->> "set_s16" | arg_index: 3 | data: 3
+					<<-- "set_s16" |
+					Updated argument with value: 3 | index: 3
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x32< >2<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >2<
+					-->> "get_s16" | arg_index: 3
+					<<-- "get_s16" | Decoded S16: 3
+					-->> "set_s16" | arg_index: 3 | data: 32
+					<<-- "set_s16" |
+					Updated argument with value: 32 | index: 3
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x37< >7<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >7<
+					-->> "get_s16" | arg_index: 3
+					<<-- "get_s16" | Decoded S16: 32
+					-->> "set_s16" | arg_index: 3 | data: 327
+					<<-- "set_s16" |
+					Updated argument with value: 327 | index: 3
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x36< >6<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >6<
+					-->> "get_s16" | arg_index: 3
+					<<-- "get_s16" | Decoded S16: 327
+					-->> "set_s16" | arg_index: 3 | data: 3276
+					<<-- "set_s16" |
+					Updated argument with value: 3276 | index: 3
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x37< >7<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >7<
+					-->> "get_s16" | arg_index: 3
+					<<-- "get_s16" | Decoded S16: 3276
+					-->> "set_s16" | arg_index: 3 | data: 32767
+					<<-- "set_s16" |
+					Updated argument with value: 32767 | index: 3
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x43< >C<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 2 | arg index: 6
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2d<
+				PARSER_ID - ARG | num_match -6
+				ARG begins | command: 6
+				-->> "add_arg" | command index: 6
+					argument of type >S< added | Num arguments: 2 | Arg index: 6
+					-->> "set_s16" | arg_index: 6 | data: 0
+					<<-- "set_s16" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >-<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x30< >0<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >0<
+					-->> "get_s16" | arg_index: 6
+					<<-- "get_s16" | Decoded S16: 0
+					-->> "set_s16" | arg_index: 6 | data: 0
+					<<-- "set_s16" |
+					Updated argument with value: 0 | index: 6
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x44< >D<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 3 | arg index: 9
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2d<
+				PARSER_ID - ARG | num_match -6
+				ARG begins | command: 6
+				-->> "add_arg" | command index: 6
+					argument of type >S< added | Num arguments: 3 | Arg index: 9
+					-->> "set_s16" | arg_index: 9 | data: 0
+					<<-- "set_s16" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >-<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x31< >1<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >1<
+					-->> "get_s16" | arg_index: 9
+					<<-- "get_s16" | Decoded S16: 0
+					-->> "set_s16" | arg_index: 9 | data: -1
+					<<-- "set_s16" |
+					Updated argument with value: -1 | index: 9
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x0<
+				Terminator detected | Number of partial matches: -6
+				Terminator after ARG
+				-->> "close_arg" |
+					Argument closed | num arg: 4 | arg index: 12
+				<<-- "close_arg" |
+				just one partial match: 6
+				Valid command ID6 decoded
+				FSM RESET
+				Executing handler of command 6 | num arguments: 4
+				-->> "exe_handler" | exe_index: 6
+					-->> "get_s16" | arg_index: 0
+					<<-- "get_s16" | Decoded S16: -32768
+					-->> "get_s16" | arg_index: 3
+					<<-- "get_s16" | Decoded S16: 32767
+					-->> "get_s16" | arg_index: 6
+					<<-- "get_s16" | Decoded S16: 0
+					-->> "get_s16" | arg_index: 9
+					<<-- "get_s16" | Decoded S16: -1
+					-->> "my_handler_four_s16" | in: -32768 32767 0 -1
+					<<-- "my_handler_four_s16" |
+					Executing function >00401980< with arguments: -32768 32767 0 -1
+				<<-- "exe_handler" |
+				-->> "init_arg_decoder" |
+				<<-- "init_arg_decoder" |
+			<<-- "exe" |
+		<<-- "parser_executor" |
+		-->> "parser_executor" | in: 0
+			-->> "exe" | exe: >0x53< >S<
+				PARSER_IDLE
+				Match command 5, total partial matches: 1
+				Match command 6, total partial matches: 2
+			<<-- "exe" |
+			-->> "exe" | exe: >0x41< >A<
+				PARSER_ID - ID
+				Prune away partial match: 6 |  num_match: 1
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2d<
+				PARSER_ID - ARG | num_match 1
+				ARG begins | command: 5
+				-->> "add_arg" | command index: 5
+					argument of type >s< added | Num arguments: 0 | Arg index: 0
+					-->> "set_s8" | arg_index: 0 | data: 0
+					<<-- "set_s8" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >-<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x35< >5<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >5<
+					-->> "get_s8" | arg_index: 0
+					<<-- "get_s8" | Decoded S8: 0
+					-->> "set_s8" | arg_index: 0 | data: -5
+					<<-- "set_s8" |
+					Updated argument with value: -5 | index: 0
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x42< >B<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 1 | arg index: 2
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2b<
+				PARSER_ID - ARG | num_match -5
+				ARG begins | command: 5
+				-->> "add_arg" | command index: 5
+					argument of type >s< added | Num arguments: 1 | Arg index: 2
+					-->> "set_s8" | arg_index: 2 | data: 0
+					<<-- "set_s8" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >+<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x31< >1<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >1<
+					-->> "get_s8" | arg_index: 2
+					<<-- "get_s8" | Decoded S8: 0
+					-->> "set_s8" | arg_index: 2 | data: 1
+					<<-- "set_s8" |
+					Updated argument with value: 1 | index: 2
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x32< >2<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >2<
+					-->> "get_s8" | arg_index: 2
+					<<-- "get_s8" | Decoded S8: 1
+					-->> "set_s8" | arg_index: 2 | data: 12
+					<<-- "set_s8" |
+					Updated argument with value: 12 | index: 2
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x37< >7<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >7<
+					-->> "get_s8" | arg_index: 2
+					<<-- "get_s8" | Decoded S8: 12
+					-->> "set_s8" | arg_index: 2 | data: 127
+					<<-- "set_s8" |
+					Updated argument with value: 127 | index: 2
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x43< >C<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 2 | arg index: 4
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x30< >0<
+				PARSER_ID - ARG | num_match -5
+				ARG begins | command: 5
+				-->> "add_arg" | command index: 5
+					argument of type >s< added | Num arguments: 2 | Arg index: 4
+					-->> "set_s8" | arg_index: 4 | data: 0
+					<<-- "set_s8" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >0<
+					-->> "get_s8" | arg_index: 4
+					<<-- "get_s8" | Decoded S8: 0
+					-->> "set_s8" | arg_index: 4 | data: 0
+					<<-- "set_s8" |
+					Updated argument with value: 0 | index: 4
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x44< >D<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 3 | arg index: 6
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2d<
+				PARSER_ID - ARG | num_match -5
+				ARG begins | command: 5
+				-->> "add_arg" | command index: 5
+					argument of type >s< added | Num arguments: 3 | Arg index: 6
+					-->> "set_s8" | arg_index: 6 | data: 0
+					<<-- "set_s8" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >-<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x31< >1<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >1<
+					-->> "get_s8" | arg_index: 6
+					<<-- "get_s8" | Decoded S8: 0
+					-->> "set_s8" | arg_index: 6 | data: -1
+					<<-- "set_s8" |
+					Updated argument with value: -1 | index: 6
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x32< >2<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >2<
+					-->> "get_s8" | arg_index: 6
+					<<-- "get_s8" | Decoded S8: -1
+					-->> "set_s8" | arg_index: 6 | data: -12
+					<<-- "set_s8" |
+					Updated argument with value: -12 | index: 6
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x38< >8<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >8<
+					-->> "get_s8" | arg_index: 6
+					<<-- "get_s8" | Decoded S8: -12
+					-->> "set_s8" | arg_index: 6 | data: -128
+					<<-- "set_s8" |
+					Updated argument with value: -128 | index: 6
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x0<
+				Terminator detected | Number of partial matches: -5
+				Terminator after ARG
+				-->> "close_arg" |
+					Argument closed | num arg: 4 | arg index: 8
+				<<-- "close_arg" |
+				just one partial match: 5
+				Valid command ID5 decoded
+				FSM RESET
+				Executing handler of command 5 | num arguments: 4
+				-->> "exe_handler" | exe_index: 5
+					-->> "get_s8" | arg_index: 0
+					<<-- "get_s8" | Decoded S8: -5
+					-->> "get_s8" | arg_index: 2
+					<<-- "get_s8" | Decoded S8: 127
+					-->> "get_s8" | arg_index: 4
+					<<-- "get_s8" | Decoded S8: 0
+					-->> "get_s8" | arg_index: 6
+					<<-- "get_s8" | Decoded S8: -128
+					-->> "my_handler_four_s8" | in: -5 127 0 -128
+					<<-- "my_handler_four_s8" |
+					Executing function >004017e0< with arguments: -5 127 0 -128
+				<<-- "exe_handler" |
+				-->> "init_arg_decoder" |
+				<<-- "init_arg_decoder" |
+			<<-- "exe" |
+		<<-- "parser_executor" |
+		-->> "parser_executor" | in: 0
+			-->> "exe" | exe: >0x41< >A<
+				PARSER_IDLE
+				Match command 1, total partial matches: 1
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2b<
+				PARSER_ID - ARG | num_match 1
+				ARG begins | command: 1
+				-->> "add_arg" | command index: 1
+					argument of type >u< added | Num arguments: 0 | Arg index: 0
+					-->> "set_u8" | arg_index: 0 | data: 0
+					<<-- "set_u8" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >+<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x35< >5<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >5<
+					-->> "get_u8" | arg_index: 0
+					<<-- "get_u8" | Decoded U8: 0
+					-->> "set_u8" | arg_index: 0 | data: 5
+					<<-- "set_u8" |
+					Updated argument with value: 5 | index: 0
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x42< >B<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 1 | arg index: 2
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2b<
+				PARSER_ID - ARG | num_match -1
+				ARG begins | command: 1
+				-->> "add_arg" | command index: 1
+					argument of type >u< added | Num arguments: 1 | Arg index: 2
+					-->> "set_u8" | arg_index: 2 | data: 0
+					<<-- "set_u8" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >+<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x32< >2<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >2<
+					-->> "get_u8" | arg_index: 2
+					<<-- "get_u8" | Decoded U8: 0
+					-->> "set_u8" | arg_index: 2 | data: 2
+					<<-- "set_u8" |
+					Updated argument with value: 2 | index: 2
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x30< >0<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >0<
+					-->> "get_u8" | arg_index: 2
+					<<-- "get_u8" | Decoded U8: 2
+					-->> "set_u8" | arg_index: 2 | data: 20
+					<<-- "set_u8" |
+					Updated argument with value: 20 | index: 2
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x30< >0<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >0<
+					-->> "get_u8" | arg_index: 2
+					<<-- "get_u8" | Decoded U8: 20
+					-->> "set_u8" | arg_index: 2 | data: 200
+					<<-- "set_u8" |
+					Updated argument with value: 200 | index: 2
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x43< >C<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 2 | arg index: 4
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x30< >0<
+				PARSER_ID - ARG | num_match -1
+				ARG begins | command: 1
+				-->> "add_arg" | command index: 1
+					argument of type >u< added | Num arguments: 2 | Arg index: 4
+					-->> "set_u8" | arg_index: 4 | data: 0
+					<<-- "set_u8" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >0<
+					-->> "get_u8" | arg_index: 4
+					<<-- "get_u8" | Decoded U8: 0
+					-->> "set_u8" | arg_index: 4 | data: 0
+					<<-- "set_u8" |
+					Updated argument with value: 0 | index: 4
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x44< >D<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 3 | arg index: 6
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2b<
+				PARSER_ID - ARG | num_match -1
+				ARG begins | command: 1
+				-->> "add_arg" | command index: 1
+					argument of type >u< added | Num arguments: 3 | Arg index: 6
+					-->> "set_u8" | arg_index: 6 | data: 0
+					<<-- "set_u8" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >+<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x38< >8<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >8<
+					-->> "get_u8" | arg_index: 6
+					<<-- "get_u8" | Decoded U8: 0
+					-->> "set_u8" | arg_index: 6 | data: 8
+					<<-- "set_u8" |
+					Updated argument with value: 8 | index: 6
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x38< >8<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >8<
+					-->> "get_u8" | arg_index: 6
+					<<-- "get_u8" | Decoded U8: 8
+					-->> "set_u8" | arg_index: 6 | data: 88
+					<<-- "set_u8" |
+					Updated argument with value: 88 | index: 6
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x0<
+				Terminator detected | Number of partial matches: -1
+				Terminator after ARG
+				-->> "close_arg" |
+					Argument closed | num arg: 4 | arg index: 8
+				<<-- "close_arg" |
+				just one partial match: 1
+				Valid command ID1 decoded
+				FSM RESET
+				Executing handler of command 1 | num arguments: 4
+				-->> "exe_handler" | exe_index: 1
+					-->> "get_u8" | arg_index: 0
+					<<-- "get_u8" | Decoded U8: 5
+					-->> "get_u8" | arg_index: 2
+					<<-- "get_u8" | Decoded U8: 200
+					-->> "get_u8" | arg_index: 4
+					<<-- "get_u8" | Decoded U8: 0
+					-->> "get_u8" | arg_index: 6
+					<<-- "get_u8" | Decoded U8: 88
+					-->> "my_handler_four_u8" | in: 5 200 0 88
+					<<-- "my_handler_four_u8" |
+					Executing function >00401640< with arguments: 5 200 0 88
+				<<-- "exe_handler" |
+				-->> "init_arg_decoder" |
+				<<-- "init_arg_decoder" |
+			<<-- "exe" |
+		<<-- "parser_executor" |
+		-->> "parser_executor" | in: 0
+			-->> "exe" | exe: >0x50< >P<
+				PARSER_IDLE
+				Match command 0, total partial matches: 1
+				Match command 10, total partial matches: 2
+			<<-- "exe" |
+			-->> "exe" | exe: >0x4f< >O<
+				PARSER_ID - ID
+				Prune away partial match: 0 |  num_match: 1
+			<<-- "exe" |
+			-->> "exe" | exe: >0x53< >S<
+				PARSER_ID - ID
+				Only one partial match remains. Num_match: -10
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2b<
+				PARSER_ID - ARG | num_match -10
+				ARG begins | command: 10
+				-->> "add_arg" | command index: 10
+					argument of type >d< added | Num arguments: 0 | Arg index: 0
+					-->> "set_s32" | arg_index: 0 | data: 0
+					<<-- "set_s32" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >+<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x31< >1<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >1<
+					-->> "get_s32" | arg_index: 0
+					<<-- "get_s32" | Decoded S32: 0
+					-->> "set_s32" | arg_index: 0 | data: 1
+					<<-- "set_s32" |
+					Updated argument with value: 1 | index: 0
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x4e< >N<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 1 | arg index: 5
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x45< >E<
+				PARSER_ID - ID
+			<<-- "exe" |
+			-->> "exe" | exe: >0x47< >G<
+				PARSER_ID - ID
+			<<-- "exe" |
+			-->> "exe" | exe: >0x2d<
+				PARSER_ID - ARG | num_match -10
+				ARG begins | command: 10
+				-->> "add_arg" | command index: 10
+					argument of type >d< added | Num arguments: 1 | Arg index: 5
+					-->> "set_s32" | arg_index: 5 | data: 0
+					<<-- "set_s32" |
+				<<-- "add_arg" | Success: 0
+				-->> "accumulate_arg" | data >-<
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x31< >1<
+				PARSER_ARG
+				-->> "accumulate_arg" | data >1<
+					-->> "get_s32" | arg_index: 5
+					<<-- "get_s32" | Decoded S32: 0
+					-->> "set_s32" | arg_index: 5 | data: -1
+					<<-- "set_s32" |
+					Updated argument with value: -1 | index: 5
+				<<-- "accumulate_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x53< >S<
+				PARSER_ARG
+				Closing argument
+				-->> "close_arg" |
+					Argument closed | num arg: 2 | arg index: 10
+				<<-- "close_arg" |
+			<<-- "exe" |
+			-->> "exe" | exe: >0x48< >H<
+				PARSER_ID - ID
+			<<-- "exe" |
+			-->> "exe" | exe: >0x41< >A<
+				PARSER_ID - ID
+			<<-- "exe" |
+			-->> "exe" | exe: >0x4b< >K<
+				PARSER_ID - ID
+			<<-- "exe" |
+			-->> "exe" | exe: >0x41< >A<
+				PARSER_ID - ID
+			<<-- "exe" |
+			-->> "exe" | exe: >0x0<
+				Terminator detected | Number of partial matches: -10
+				just one partial match: 10
+				Valid command ID10 decoded
+				FSM RESET
+				Executing handler of command 10 | num arguments: 2
+				-->> "exe_handler" | exe_index: 10
+					-->> "get_s32" | arg_index: 0
+					<<-- "get_s32" | Decoded S32: 1
+					-->> "get_s32" | arg_index: 5
+					<<-- "get_s32" | Decoded S32: -1
+					-->> "my_handler_two_s32" | in: 1 -1
+					<<-- "my_handler_two_s32" |
+					Executing function >00401ca0< with arguments: 1 -1
+				<<-- "exe_handler" |
+				-->> "init_arg_decoder" |
+				<<-- "init_arg_decoder" |
+			<<-- "exe" |
+		<<-- "parser_executor" |
+	<<-- "test_bench" | out: 0
+<<-- "main" |
+
+Debug has Ended!
