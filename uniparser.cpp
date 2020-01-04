@@ -11,16 +11,10 @@
 **	UNIVERSAL PARSER
 *****************************************************************************
 **	Author: 			Orso Eric
-**	Creation Date:
-**	Last Edit Date:
-**	Revision:			1
-**	Version:			4.0 ALFA
-****************************************************************************/
-
-/****************************************************************************
-**	HYSTORY VERSION
-*****************************************************************************
-**
+**	Creation Date:		2019-06-17
+**	Last Edit Date:		2019-10-09
+**	Revision:			2
+**	Version:			4.1
 ****************************************************************************/
 
 /****************************************************************************
@@ -64,7 +58,9 @@
 **	INCLUDES
 ****************************************************************************/
 
-#include <iostream>
+//#include <iostream>
+#include <cstdio>
+#include <stdint.h>
 #define ENABLE_DEBUG
 #include "debug.h"
 //Class Header
@@ -515,9 +511,11 @@ bool Uniparser::exe( uint8_t data )
 				}	//End If: this command is a partial match
 			}	//End For: scan all commands
 		}	//end if: I have at least one parser_tmp.id_index entry
-		//If I have just one match. g_num_match now holds the index of the match
-		else if (this -> g_num_match < 0)
+		//BUGFIX: If the only match is also entry 0
+		//If I have just one match. Or no matches. g_num_match now holds the index of the match
+		else //if (this -> g_num_match <= 0)
 		{
+
 			//decode command index
 			t = -this -> g_num_match;
 			DPRINT("just one partial match: %d\n", t);
@@ -541,7 +539,7 @@ bool Uniparser::exe( uint8_t data )
 			}
 			//Check match  against the character after the one already matched.
 			//If: the next command data would be the terminator '\0'
-			if ( this -> g_cmd_txt[t][ cmd_index ] == '\0')
+			if ((this -> g_cmd_txt[t] != nullptr) && (this -> g_cmd_txt[t][ cmd_index ] == '\0'))
 			{
 				//If there is a pending execution already
 				if ((UNIPARSER_PENDANTIC_CHECKS) && (exe_index != -1))
@@ -560,17 +558,27 @@ bool Uniparser::exe( uint8_t data )
 			//if: I'm given a terminator but dictionary does not contain a terminator
 			else
 			{
-				//This happen if user gives a command that lack one char
-				DPRINT("no match. given: >0x%x< expected: >0x%x<\n" ,data , this -> g_cmd_txt[t][ cmd_index ] );
+				if (this -> g_cmd_txt[t] != nullptr)
+				{
+					//This happen if user gives a command that lack one char
+					DPRINT("no match. given: >0x%x< expected: >0x%x<\n" ,data , this -> g_cmd_txt[t][ cmd_index ] );
+				}
+				else
+				{
+					//This happen if user gives a command that lack one char
+					DPRINT("Dictionary entry is nullptr. Maybe dictionary is yet to be initialized? Dictionary entry: %d, Line: %d\n", t, __LINE__  );
+				}
+
 				//Issue a FSM reset
 				f_rst_fsm = true;
 			}
 		}
-		//if: no partial matches
+		/*
 		else
 		{
-			//do nothing
+			DPRINT("Num match exactly zero. Line: %d\n", __LINE__);
 		}
+		*/
 		//Issue a FSM reset
 		f_rst_fsm = true;
 	}	//End If: input terminator from user
@@ -707,8 +715,9 @@ bool Uniparser::exe( uint8_t data )
 					}
 				} //end for each dictionary command
 			}	//end if: I have at least one partial match
+			//BUGFIX: If the only match is also entry 0
 			//If I only have one match
-			else if (this -> g_num_match < 0)
+			else //if (this -> g_num_match <= 0)
 			{
 				//decode command index
 				uint8_t t = -this -> g_num_match;
@@ -741,22 +750,7 @@ bool Uniparser::exe( uint8_t data )
 						f_rst_fsm = true;
 					}
 				}
-				//Else: this dictionary entry does not contain an argument descriptor
-				else
-				{
-					DPRINT("Command does not have argument in this position. Prune away partial match: %d\n", t);
-					//Issue a FSM reset
-					f_rst_fsm = true;
-				}
 			}	//If I only have one match
-			//if: no matches
-			else
-			{
-				//I shouldn't have been in ID to begin with, but I can recover from this error
-				DPRINT("ERR: FSM was in ID matching but no partial matches were detected.\n");
-				//Issue a FSM reset
-				f_rst_fsm = true;
-			}
 		}	//end if: I'm being fed an argument
 		//if: I'm matching a non argument non terminator
 		else
@@ -820,8 +814,9 @@ bool Uniparser::exe( uint8_t data )
 					}
 				} //end for each dictionary command
 			}	//end if: I have at least one partial match
+			//BUGFIX: If the only match is also entry 0
 			//If I only have one match
-			else if (this -> g_num_match < 0)
+			else //if (this -> g_num_match <= 0)
 			{
 				//decode command index
 				uint8_t t = -this -> g_num_match;
@@ -830,6 +825,7 @@ bool Uniparser::exe( uint8_t data )
 				{
 					//Match! Scan next entry
 					this -> g_cmd_index[t]++;
+					DPRINT("Match still valid... Line: %d\n", __LINE__);
 				}
 				//no match
 				else
@@ -839,14 +835,6 @@ bool Uniparser::exe( uint8_t data )
 					DPRINT("Last match was pruned away. Expected >0x%x< got >0x%x< instead\n", this -> g_cmd_txt[t][ this -> g_cmd_index[t] ], data);
 				}
 			}	//If I only have one match
-			//if: no matches
-			else
-			{
-				//I shouldn't have been in ID to begin with, but I can recover from this error
-				DPRINT("ERR: FSM was in ID matching but no partial matches were detected.\n");
-				//Issue a FSM reset
-				f_rst_fsm = true;
-			}
 		}	//end if: I'm matching a non argument non terminator
 	}	//end if: I'm ID matching
 
@@ -880,8 +868,9 @@ bool Uniparser::exe( uint8_t data )
 			//! Exit argument mode
 			//Close current argument and update argument FSM
 			this -> close_arg();
-			//if: I have no matches or multiple matches. I should have just one match by this point.
-			if ((UNIPARSER_PENDANTIC_CHECKS) && (this -> g_num_match >= 0))
+			//BUGFIX: If the only match is also entry 0
+			//if: I have multiple matches. I should have just one match by this point.
+			if ((UNIPARSER_PENDANTIC_CHECKS) && (this -> g_num_match > 0))
 			{
 				this -> g_err = Err_codes::ERR_GENERIC;
 				DPRINT("ERR%d: ERR_GENERIC in line: %d\n", this -> g_err, __LINE__ );
@@ -1373,7 +1362,10 @@ bool Uniparser::add_arg( uint8_t cmd_id )
 	uint8_t arg_descriptor = this -> g_cmd_txt[cmd_id][cmd_index];
 	//Store argument identifier as first char in the argument
 	this -> g_arg[ arg_index ] = arg_descriptor;
-	DPRINT("argument of type >%c< added | Num arguments: %d | Arg index: %d\n", this -> g_arg[ arg_index ], this -> g_arg_fsm_status.num_arg, this -> g_arg_fsm_status.arg_index );
+	//BUGFIX: default sign is + | fixes an issue when sign is not specified in an argument following a negative argument
+	//*-1*2 -> decoded as -1 | -2
+	this -> g_arg_fsm_status.arg_sign = false;
+	DPRINT("argument of type >%c< added | Num arguments: %d | Arg index: %d | Arg sign %c \n", this -> g_arg[ arg_index ], this -> g_arg_fsm_status.num_arg, this -> g_arg_fsm_status.arg_index, (this -> g_arg_fsm_status.arg_sign)?('-'):('+') );
 
 		//! Initialize argument content
 	//switch: decode argument desriptor

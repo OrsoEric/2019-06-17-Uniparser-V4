@@ -51,7 +51,10 @@
 **	added syntax error decoder to string
 **	added get_syntax_error to decode last command error in string form
 **	added guard against failure of set_
-**
+**		>2019-10-09
+**	Fixed sign bug in add_cmd
+**		>2020-01-04
+**	When there is only one command in the dictionary, there is an algorithmic error in ID match
 **********************************************************************************/
 
 /**********************************************************************************
@@ -205,12 +208,15 @@ typedef struct _Arg_fsm_status Arg_fsm_status;
 //!	@author		Orso Eric
 //! @version	0.1 alpha
 //! @date		2019/06
-//! @brief		Dummy Library
+//! @brief		Uniparser V4. Universal command decoder with arguments and callback funcrion
 //! @details
-//!	Verbose description \n
-//! xxx
+//! UNIPARSER V4 \n
+//!	Adding a parser is a time consuming, bug prone and thankless task. \n
+//! This library is the current iteration of a series of libraries meant to minimize \n
+//! the workload required to add a command parser to a microcontroller application
 //! @pre		No prerequisites
-//! @bug		None
+//! @bug		Sign bug: PWMR-127L127 is decoded as -127 | -127 (wrong) instead of -127 | +127 (right) \n
+//!				SOLVED | Was caused by the sign of the argument decoder not being initialized if a sign was not specified
 //! @warning	No warnings
 //! @copyright	License ?
 //! @todo		add special error handler function callback. It's passed a code and a string with the error
